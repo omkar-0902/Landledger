@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About LandLedger | Sovereign Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#fff0e7",
+                      "surface-container-high": "#282a2a",
+                      "tertiary-fixed": "#ffdcc3",
+                      "primary-fixed": "#a0efff",
+                      "surface-dim": "#121414",
+                      "inverse-primary": "#006876",
+                      "background": "#121414",
+                      "surface-container": "#1e2020",
+                      "on-background": "#e2e2e2",
+                      "surface-bright": "#383939",
+                      "error": "#ffb4ab",
+                      "outline-variant": "#3e494b",
+                      "on-tertiary-fixed": "#2f1500",
+                      "surface-container-lowest": "#0d0f0f",
+                      "on-secondary": "#14353b",
+                      "inverse-on-surface": "#2f3131",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "surface-container-low": "#1a1c1c",
+                      "tertiary": "#ffb77c",
+                      "primary-container": "#007a8a",
+                      "secondary": "#abccd4",
+                      "surface-tint": "#7ad4e5",
+                      "on-tertiary": "#4d2600",
+                      "on-surface": "#e2e2e2",
+                      "secondary-fixed-dim": "#abccd4",
+                      "secondary-container": "#2c4b52",
+                      "on-secondary-fixed": "#001f25",
+                      "on-error": "#690005",
+                      "on-primary-fixed": "#001f25",
+                      "secondary-fixed": "#c7e8f0",
+                      "primary-fixed-dim": "#7ad4e5",
+                      "surface-container-highest": "#333535",
+                      "on-secondary-container": "#9abbc2",
+                      "surface": "#121414",
+                      "error-container": "#93000a",
+                      "tertiary-container": "#9e6027",
+                      "inverse-surface": "#e2e2e2",
+                      "on-primary-container": "#daf8ff",
+                      "primary": "#7ad4e5",
+                      "outline": "#889395",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#ffb77c",
+                      "on-surface-variant": "#bdc8cb",
+                      "on-primary-fixed-variant": "#004e59",
+                      "on-primary": "#00363e",
+                      "surface-variant": "#333535",
+                      "on-secondary-fixed-variant": "#2c4b52"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #121414; }
+        .glass-panel {
+            background: rgba(40, 42, 42, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] rounded-full bg-[#121414]/70 backdrop-blur-xl shadow-2xl shadow-black/20 flex justify-between items-center px-8 py-3 max-w-7xl mx-auto z-50">
+<div class="text-2xl font-bold tracking-tighter text-[#7ad4e5] font-headline">LandLedger</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#e2e2e2]/60 hover:text-[#7ad4e5] transition-colors duration-300 font-['Manrope'] tracking-tight" href="#">Intelligence</a>
+<a class="text-[#e2e2e2]/60 hover:text-[#7ad4e5] transition-colors duration-300 font-['Manrope'] tracking-tight" href="#">Portfolio</a>
+<a class="text-[#e2e2e2]/60 hover:text-[#7ad4e5] transition-colors duration-300 font-['Manrope'] tracking-tight" href="#">Market</a>
+<a class="text-[#e2e2e2]/60 hover:text-[#7ad4e5] transition-colors duration-300 font-['Manrope'] tracking-tight" href="#">Advisory</a>
+</div>
+<div class="flex items-center gap-5">
+<span class="material-symbols-outlined text-[#e2e2e2]/60 cursor-pointer hover:text-[#7ad4e5] transition-transform active:scale-90" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-[#e2e2e2]/60 cursor-pointer hover:text-[#7ad4e5] transition-transform active:scale-90" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional male in a dark environment with soft teal rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7gT3ZvdL-aGKcdW_mLfndwlPOB_K4XmQTy_e9UFo1SRAZjl5vrMpl9F6wpm6mYDMawGJbyzScjkrBSnAlL7Az0h-PG1g3rEh0WlTXqVtr8FVuGJcWxbKz9ajh4xi_Rbsicpm9GuuEkBu8wuCIgARQB8-35rDnghG0ulFGIMSN4HagfgDaecYxgJoGZkUll8QCy6w8NhLkO966Q6NIs4RLtl4U6_vk_H1JrLZ0Nt9MSWX07-YbMn1tJlHJ-JwZgSVKEiluvoAvvzky"/>
+</div>
+</div>
+</nav>
+<main class="relative">
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 mix-blend-luminosity" data-alt="Monolithic modern skyscraper with glass facade reflecting a dark evening sky, high contrast architectural photography with teal tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Sx_CLvU3OHumu2G70MyLFzNLMkRgi6Q-8HWexHi8M6-t2kEY3ZN6OuO1OL5yli4mt-Z6WSmhVgkWAb7OptkYY1xCW2kGN8QSgU2F0qqCYo4D2GLzFDht1XBuu1LK376nWD03w6Sz1uKxhnbss5EZ4_px1BWjg3vx3NlbpkzF9BMd0uxcEX-ahbuaj4vKD_PM6ytgP62UOsXWtkw8y_I6COqfn2hWFhxwpybunvidBZZWXK9Vl2U67sXfWvVKpK-P9V3VsN5aWLco"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/80 to-surface"></div>
+</div>
+<div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+<div class="lg:col-span-8">
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold tracking-[0.2em] uppercase mb-8">
+                        The Mission for Transparent Sovereignty
+                    </span>
+<h1 class="text-5xl md:text-8xl font-extrabold font-headline text-on-surface leading-[1.1] tracking-tighter mb-10">
+                        Architecting the <span class="text-primary">Digital Trust</span> for Global Land.
+                    </h1>
+<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed font-light">
+                        LandLedger is the definitive protocol for property intelligence, transforming opaque data into sovereign assets through immutable verification.
+                    </p>
+</div>
+</div>
+</section>
+<!-- The Problem: Opaque Records -->
+<section class="py-32 px-6 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row gap-16 items-end mb-24">
+<div class="md:w-1/2">
+<h2 class="text-4xl font-bold font-headline mb-6">The Crisis of Ambiguity</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                            Global real estate remains one of the last frontiers of fragmented information. Opaque property records, hidden encumbrances, and manual verification processes create systemic risk that costs investors billions in lost value and litigation.
+                        </p>
+</div>
+<div class="md:w-1/2 h-[1px] bg-outline-variant/30 hidden md:block mb-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-8 rounded-lg bg-surface-container shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary mb-4" data-icon="warning">warning</span>
+<h3 class="text-xl font-bold mb-3">Hidden Liens</h3>
+<p class="text-on-surface-variant font-light">Undisclosed financial obligations that jeopardize asset ownership and transferability.</p>
+</div>
+<div class="p-8 rounded-lg bg-surface-container shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary mb-4" data-icon="history_edu">history_edu</span>
+<h3 class="text-xl font-bold mb-3">Legacy Forgery</h3>
+<p class="text-on-surface-variant font-light">Physical documents susceptible to manipulation and catastrophic administrative errors.</p>
+</div>
+<div class="p-8 rounded-lg bg-surface-container shadow-sm border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary mb-4" data-icon="cloud_off">cloud_off</span>
+<h3 class="text-xl font-bold mb-3">Data Silos</h3>
+<p class="text-on-surface-variant font-light">Fragmented municipal records that prevent real-time risk assessment and liquidity.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- The Solution: Digital Vault -->
+<section class="py-40 px-6 relative overflow-hidden">
+<div class="absolute -right-20 top-40 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="mb-20 text-center">
+<h2 class="text-4xl md:text-6xl font-bold font-headline mb-6 tracking-tight">The Digital Vault Solution</h2>
+<p class="text-on-surface-variant text-xl max-w-3xl mx-auto font-light">
+                        We leverage cryptographic truth and high-fidelity intelligence to secure the world's most valuable asset class.
+                    </p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+<div class="md:col-span-8 bg-surface-container-high rounded-lg p-10 flex flex-col justify-between overflow-hidden relative group">
+<div class="relative z-10">
+<h3 class="text-3xl font-bold mb-4 font-headline">Immutable Ledger</h3>
+<p class="text-on-surface-variant max-w-md leading-relaxed">Every transaction, lien, and survey is anchored to a sovereign digital record. Once verified, it is permanent, providing a chain of custody that cannot be altered or obscured.</p>
+</div>
+<div class="mt-12 flex gap-4">
+<div class="px-6 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-lg shadow-primary/20 cursor-pointer transition-transform hover:scale-105 active:scale-95">Explore Protocol</div>
+</div>
+<img class="absolute right-[-10%] bottom-[-10%] w-2/3 h-2/3 object-contain opacity-20 group-hover:scale-110 transition-transform duration-700" data-alt="Abstract visualization of blockchain nodes and cryptographic data streams in a deep blue and teal digital space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIIHAhY1IHB6reLT3nxsepIDUzOmj3Nb0x3iKe7J9JdSrXhzBwMPjicWlNVFI5QiEwv4mVXtAS4x3hKFtZWiIfUxfOzxgbnQlWz3PLQlawtT49csuRK2hxiLUkQNqDJT-OtdhPC8eQLSGDUNVrW63JNlaJvwbev9RkQuHj98TVBf8cWF5nAQ54dIakgSfSAGho4xTrQOtsmNwx_Iq1TUgud09suTojb3v9eNqLx51wmMob3GQdmUs-CQTu_hEoQDWVQDYLcs6BqA0T"/>
+</div>
+<div class="md:col-span-4 bg-primary-container/20 rounded-lg p-10 border border-primary/20 flex flex-col justify-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-8">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="security" data-weight="fill" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h3 class="text-2xl font-bold mb-4 font-headline">Vault Security</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Military-grade encryption for all private property documentation and intelligence reports.</p>
+</div>
+<div class="md:col-span-4 bg-surface-container-low rounded-lg p-10 flex flex-col justify-end">
+<h3 class="text-2xl font-bold mb-2 font-headline">Real-time Risk</h3>
+<p class="text-on-surface-variant text-sm">Automated assessment engines monitoring global registries for instant status changes.</p>
+</div>
+<div class="md:col-span-8 bg-surface-container-highest rounded-lg p-10 flex items-center justify-between gap-8 group">
+<div class="max-w-sm">
+<h3 class="text-2xl font-bold mb-4 font-headline">Ownership Verification</h3>
+<p class="text-on-surface-variant text-sm">Instant cross-referencing of titles against satellite data and legal records.</p>
+</div>
+<div class="hidden md:block w-32 h-32 rounded-lg bg-surface/50 border border-outline-variant/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Values Section -->
+<section class="py-40 px-6 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+<div class="space-y-8">
+<div class="w-12 h-0.5 bg-primary mb-12"></div>
+<h2 class="text-5xl font-bold font-headline tracking-tighter">Core Principles of Sovereignty</h2>
+<p class="text-on-surface-variant leading-relaxed">Our foundation is built on three unshakeable pillars that define the future of land intelligence.</p>
+</div>
+<div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-4">
+<div class="text-primary text-xs font-bold tracking-widest uppercase mb-2">01. Security</div>
+<h4 class="text-2xl font-bold font-headline">Zero-Knowledge Integrity</h4>
+<p class="text-on-surface-variant font-light leading-relaxed">Protecting the privacy of owners while proving the validity of assets. We secure data at the protocol level, ensuring no single point of failure.</p>
+</div>
+<div class="space-y-4">
+<div class="text-primary text-xs font-bold tracking-widest uppercase mb-2">02. Transparency</div>
+<h4 class="text-2xl font-bold font-headline">Radical Open Ledger</h4>
+<p class="text-on-surface-variant font-light leading-relaxed">Eliminating the 'black box' of land titles. Publicly verifiable verification paths for every recorded transaction.</p>
+</div>
+<div class="space-y-4">
+<div class="text-primary text-xs font-bold tracking-widest uppercase mb-2">03. Precision</div>
+<h4 class="text-2xl font-bold font-headline">High-Fidelity Intelligence</h4>
+<p class="text-on-surface-variant font-light leading-relaxed">Moving beyond 'close enough.' We integrate sub-meter satellite imagery with legal geofencing for absolute boundary certainty.</p>
+</div>
+<div class="p-8 bg-surface-container-high rounded-xl border border-primary/10 flex items-center justify-center">
+<div class="text-center">
+<div class="text-4xl font-bold text-primary mb-1">99.9%</div>
+<div class="text-xs uppercase tracking-widest text-on-surface-variant">Verification Accuracy</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-32 px-6">
+<div class="max-w-5xl mx-auto rounded-xl overflow-hidden relative p-16 md:p-24 text-center">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/40 to-surface-container-high z-0"></div>
+<div class="absolute inset-0 opacity-20 z-0">
+<img class="w-full h-full object-cover" data-alt="Digital representation of planet earth with illuminated network connections, high-tech global connectivity theme" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4S4bHP5mJhx7Cq4FWcpD2AVVDZJnDjwnhzfi4FdkcYdj9hYg513PQJXKI-NBmfA_ELDzA15HKvJjIFoKU8dZyytLnT78VCcAc6vjqPILQpuzlFL95flSJjxku45_66-vuGWTkecal9U3wwD4V5CzoszUNhgx_2pFh_zZ_D3uFpBRsm06DXZ348cS7dkUW_hrjndmDViDpLr-SshaUqmw1JhboNRGwQlpWKde3Y9OP8SCx24vEnTSBhnAlA374JfVQJNKcwk7OxPH2"/>
+</div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-extrabold font-headline mb-8 tracking-tighter">Ready to secure your sovereignty?</h2>
+<p class="text-lg text-on-surface-variant mb-12 max-w-xl mx-auto font-light leading-relaxed">
+                        Join the world's leading institutions and private investors in building a transparent future for property ownership.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-primary hover:bg-primary/90 text-on-primary px-10 py-4 rounded-md font-bold transition-all shadow-xl shadow-primary/20">Initialize Terminal</button>
+<button class="border border-outline-variant hover:border-primary px-10 py-4 rounded-md font-bold transition-all backdrop-blur-sm">View Security Protocol</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#121414] w-full border-t border-[#333535]/15 flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full mt-40 font-['Inter'] text-sm tracking-wide">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-bold text-[#e2e2e2] mb-2">LandLedger</div>
+<p class="text-[#e2e2e2]/40 max-w-xs leading-relaxed">© 2024 Sovereign Intelligence. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<a class="text-[#e2e2e2]/40 hover:text-[#7ad4e5] underline-offset-4 hover:underline opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Protocol</a>
+<a class="text-[#e2e2e2]/40 hover:text-[#7ad4e5] underline-offset-4 hover:underline opacity-80 hover:opacity-100 transition-opacity" href="#">Security Standards</a>
+<a class="text-[#e2e2e2]/40 hover:text-[#7ad4e5] underline-offset-4 hover:underline opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Sovereignty</a>
+<a class="text-[#e2e2e2]/40 hover:text-[#7ad4e5] underline-offset-4 hover:underline opacity-80 hover:opacity-100 transition-opacity" href="#">Contact Terminal</a>
+</div>
+</footer>
+</body></html>

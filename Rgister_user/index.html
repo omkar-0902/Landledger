@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Access | LandLedger Digital Vault</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#14353b",
+                      "surface-container-high": "#282a2a",
+                      "on-tertiary": "#4d2600",
+                      "surface-tint": "#7ad4e5",
+                      "primary-container": "#007a8a",
+                      "inverse-surface": "#e2e2e2",
+                      "surface": "#121414",
+                      "surface-container-low": "#1a1c1c",
+                      "on-error": "#690005",
+                      "on-secondary-fixed": "#001f25",
+                      "on-error-container": "#ffdad6",
+                      "tertiary": "#ffb77c",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed": "#2f1500",
+                      "tertiary-fixed": "#ffdcc3",
+                      "background": "#121414",
+                      "surface-container": "#1e2020",
+                      "secondary": "#abccd4",
+                      "on-secondary-container": "#9abbc2",
+                      "surface-variant": "#333535",
+                      "on-background": "#e2e2e2",
+                      "secondary-fixed-dim": "#abccd4",
+                      "surface-dim": "#121414",
+                      "on-surface": "#e2e2e2",
+                      "on-secondary-fixed-variant": "#2c4b52",
+                      "on-tertiary-container": "#fff0e7",
+                      "tertiary-fixed-dim": "#ffb77c",
+                      "tertiary-container": "#9e6027",
+                      "surface-bright": "#383939",
+                      "secondary-fixed": "#c7e8f0",
+                      "primary-fixed": "#a0efff",
+                      "on-surface-variant": "#bdc8cb",
+                      "surface-container-highest": "#333535",
+                      "on-primary-container": "#daf8ff",
+                      "primary": "#7ad4e5",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "on-primary-fixed-variant": "#004e59",
+                      "inverse-primary": "#006876",
+                      "outline-variant": "#3e494b",
+                      "primary-fixed-dim": "#7ad4e5",
+                      "surface-container-lowest": "#0d0f0f",
+                      "inverse-on-surface": "#2f3131",
+                      "outline": "#889395",
+                      "error-container": "#93000a",
+                      "on-primary": "#00363e",
+                      "secondary-container": "#2c4b52",
+                      "on-primary-fixed": "#001f25"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0f0f;
+        }
+        .headline-text {
+            font-family: 'Manrope', sans-serif;
+        }
+        .vault-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(122, 212, 229, 0.12) 0%, rgba(18, 20, 20, 0) 80%);
+        }
+        .glass-vault {
+            background: rgba(26, 28, 28, 0.45);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(122, 212, 229, 0.1);
+        }
+        .animated-scanner {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #7ad4e5, transparent);
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scan 6s linear infinite;
+            opacity: 0.2;
+        }
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        .floating-node {
+            animation: float 8s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-30px) translateX(10px); }
+        }
+        .grid-system {
+            background-image: 
+                linear-gradient(rgba(122, 212, 229, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(122, 212, 229, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+        .data-stream {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, #7ad4e5, transparent);
+            opacity: 0.15;
+            animation: stream 12s linear infinite;
+        }
+        @keyframes stream {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        .input-glow:focus-within {
+            box-shadow: 0 0 15px rgba(122, 212, 229, 0.1);
+        }
+        .btn-dynamic-grad {
+            background-size: 200% 200%;
+            animation: grad-shift 4s ease infinite;
+        }
+        @keyframes grad-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface selection:bg-primary/30 min-h-screen flex flex-col overflow-x-hidden">
+<!-- Immersive Background Elements -->
+<div class="fixed inset-0 vault-gradient pointer-events-none"></div>
+<!-- Subtle Animated Grid System -->
+<div class="fixed inset-0 grid-system pointer-events-none opacity-40"></div>
+<!-- Background Noise Overlay -->
+<div class="fixed inset-0 opacity-[0.02] pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTqwf6YEya1em8aQ84Trk8Y-dbYny3v2UzsTWZhBy-or7vUS_MHtuy3OsIZOe4S-rlpopZ1l32KX3Vk03xHvaU-KkTszfr-MdtTKYfe-zMB2hzNzxIFh8FxiLxTXPN_XAGb_-E17_uz6fPuZnJ_VCuecXxFaS8HGNeBVTQwt6zhjFfhKRXntucReQBLgMzOg8Jcf2gDqnYJZRQ_ao-YBCRePChRnPl-WscRQ1tZT7-J2JV72XSPgCzG85c3znfDPQCHSfX9UJTZhpw');"></div>
+<!-- Data Streams -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden">
+<div class="data-stream" style="left: 15%; animation-duration: 8s; opacity: 0.1;"></div>
+<div class="data-stream" style="left: 45%; animation-duration: 15s; animation-delay: -2s; opacity: 0.05;"></div>
+<div class="data-stream" style="left: 75%; animation-duration: 10s; animation-delay: -5s; opacity: 0.12;"></div>
+<div class="data-stream" style="left: 90%; animation-duration: 18s; animation-delay: -1s; opacity: 0.08;"></div>
+</div>
+<!-- Ambient Particles -->
+<div class="fixed inset-0 pointer-events-none">
+<div class="absolute top-[15%] left-[10%] w-2 h-2 bg-primary/30 rounded-full blur-sm floating-node"></div>
+<div class="absolute top-[65%] right-[15%] w-3 h-3 bg-tertiary/20 rounded-full blur-md floating-node" style="animation-delay: -2s;"></div>
+<div class="absolute bottom-[25%] left-[25%] w-1.5 h-1.5 bg-primary/15 rounded-full blur-none floating-node" style="animation-delay: -4s;"></div>
+<div class="absolute top-[40%] left-[80%] w-2 h-2 bg-primary/20 rounded-full blur-sm floating-node" style="animation-delay: -6s;"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center relative px-6 py-12">
+<div class="w-full max-w-lg relative">
+<!-- Logo Branding -->
+<div class="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+<div class="inline-flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1, 'wght' 300;">shield_with_heart</span>
+<span class="text-4xl font-extrabold tracking-tighter headline-text text-on-surface">LandLedger</span>
+</div>
+<div class="flex items-center justify-center gap-4">
+<div class="h-px w-8 bg-gradient-to-r from-transparent to-primary/30"></div>
+<span class="text-[10px] uppercase tracking-[0.4em] text-outline font-bold">Sovereign Intel Node</span>
+<div class="h-px w-8 bg-gradient-to-l from-transparent to-primary/30"></div>
+</div>
+</div>
+<!-- The Vault Login Card -->
+<div class="glass-vault rounded-lg overflow-hidden relative shadow-2xl group transition-all duration-500 hover:border-primary/30">
+<!-- Animated Scan Line -->
+<div class="animated-scanner"></div>
+<div class="p-10 md:p-12">
+<div class="mb-10 text-center">
+<h2 class="text-2xl font-bold headline-text text-white mb-2">Vault Decryption</h2>
+<p class="text-on-surface-variant/70 text-xs font-medium uppercase tracking-widest leading-loose">
+                        Verify identity for secure protocol access
+                    </p>
+</div>
+<form class="space-y-6">
+<!-- Username -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-[10px] uppercase tracking-widest text-primary/70 font-bold ml-1" for="username">Operator Alias</label>
+</div>
+<div class="relative input-glow transition-shadow duration-300 rounded-md">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline/50 text-xl" data-icon="account_circle">account_circle</span>
+</div>
+<input class="w-full bg-surface-container-lowest/50 border border-outline-variant/10 rounded-md py-4 pl-12 pr-4 text-on-surface placeholder:text-outline/30 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 font-body text-sm" id="username" placeholder="Username" required="" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-[10px] uppercase tracking-widest text-primary/70 font-bold ml-1" for="email">Encrypted Comms</label>
+</div>
+<div class="relative input-glow transition-shadow duration-300 rounded-md">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline/50 text-xl" data-icon="alternate_email">alternate_email</span>
+</div>
+<input class="w-full bg-surface-container-lowest/50 border border-outline-variant/10 rounded-md py-4 pl-12 pr-4 text-on-surface placeholder:text-outline/30 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 font-body text-sm" id="email" placeholder="Email Address" required="" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-[10px] uppercase tracking-widest text-primary/70 font-bold ml-1" for="password">Security Seed</label>
+<a class="text-[10px] text-primary/50 hover:text-primary transition-colors font-bold uppercase tracking-widest" href="#">Reset Key</a>
+</div>
+<div class="relative input-glow transition-shadow duration-300 rounded-md">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline/50 text-xl" data-icon="terminal">terminal</span>
+</div>
+<input class="w-full bg-surface-container-lowest/50 border border-outline-variant/10 rounded-md py-4 pl-12 pr-4 text-on-surface placeholder:text-outline/30 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 font-body text-sm" id="password" placeholder="••••••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-6">
+<button class="w-full group relative py-4 bg-gradient-to-r from-primary via-primary-container to-primary btn-dynamic-grad text-on-primary font-bold rounded-md shadow-xl overflow-hidden active:scale-[0.98] transition-all duration-200 headline-text tracking-widest flex items-center justify-center gap-3" type="submit">
+<div class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out"></div>
+<span class="material-symbols-outlined text-xl" data-icon="sensors">sensors</span>
+                            INITIALIZE VAULT
+                        </button>
+</div>
+</form>
+<div class="mt-8 flex items-center justify-center gap-8">
+<div class="flex flex-col items-center">
+<span class="text-[9px] uppercase tracking-tighter text-outline/50 font-bold mb-1">Status</span>
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#7ad4e5]"></span>
+<span class="text-[10px] text-on-surface font-medium">LIVE</span>
+</div>
+</div>
+<div class="w-px h-6 bg-outline-variant/10"></div>
+<div class="flex flex-col items-center">
+<span class="text-[9px] uppercase tracking-tighter text-outline/50 font-bold mb-1">Encryption</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">enhanced_encryption</span>
+<span class="text-[10px] text-on-surface font-medium uppercase tracking-tighter">AES-512</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Access Request Link -->
+<div class="mt-10 text-center">
+<p class="text-outline text-xs tracking-wide">
+                New operator? 
+                <a class="text-primary font-bold hover:underline transition-all underline-offset-4 ml-1" href="#">Request Authorization Protocol</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-primary/5 py-10 px-12 flex flex-col items-center gap-6 z-10">
+<div class="flex flex-wrap justify-center gap-8 md:gap-16">
+<a class="text-outline/40 hover:text-primary transition-colors font-body text-[10px] tracking-[0.2em] uppercase font-bold" href="#">Security Specs</a>
+<a class="text-outline/40 hover:text-primary transition-colors font-body text-[10px] tracking-[0.2em] uppercase font-bold" href="#">Data Sovereignty</a>
+<a class="text-outline/40 hover:text-primary transition-colors font-body text-[10px] tracking-[0.2em] uppercase font-bold" href="#">Privacy Core</a>
+</div>
+<p class="text-outline/20 text-[9px] font-medium tracking-[0.5em] uppercase text-center">
+        © MMXXIV Sovereign Intelligence Network • All Systems Operational
+    </p>
+</footer>
+</body></html>

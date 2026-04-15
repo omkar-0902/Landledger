@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LandLedger | Property Intelligence Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#001f25",
+                        "on-primary-container": "#daf8ff",
+                        "outline": "#889395",
+                        "surface-container-highest": "#333535",
+                        "on-primary-fixed-variant": "#004e59",
+                        "inverse-surface": "#e2e2e2",
+                        "on-surface": "#e2e2e2",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#ffb77c",
+                        "surface-dim": "#121414",
+                        "tertiary": "#ffb77c",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001f25",
+                        "inverse-primary": "#006876",
+                        "tertiary-container": "#9e6027",
+                        "surface-tint": "#7ad4e5",
+                        "on-secondary-container": "#9abbc2",
+                        "inverse-on-surface": "#2f3131",
+                        "surface-container": "#1e2020",
+                        "surface-container-high": "#282a2a",
+                        "primary": "#7ad4e5",
+                        "surface": "#121414",
+                        "secondary-fixed": "#c7e8f0",
+                        "on-surface-variant": "#bdc8cb",
+                        "surface-container-lowest": "#0d0f0f",
+                        "on-error": "#690005",
+                        "primary-fixed": "#a0efff",
+                        "secondary-fixed-dim": "#abccd4",
+                        "on-background": "#e2e2e2",
+                        "primary-fixed-dim": "#7ad4e5",
+                        "on-primary": "#00363e",
+                        "on-secondary": "#14353b",
+                        "on-tertiary": "#4d2600",
+                        "secondary": "#abccd4",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "on-tertiary-container": "#fff0e7",
+                        "tertiary-fixed": "#ffdcc3",
+                        "error-container": "#93000a",
+                        "background": "#121414",
+                        "secondary-container": "#2c4b52",
+                        "on-tertiary-fixed": "#2f1500",
+                        "outline-variant": "#3e494b",
+                        "surface-bright": "#383939",
+                        "surface-variant": "#333535",
+                        "on-secondary-fixed-variant": "#2c4b52",
+                        "surface-container-low": "#1a1c1c",
+                        "primary-container": "#007a8a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #121414;
+            color: #e2e2e2;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(40, 42, 42, 0.7);
+            backdrop-filter: blur(24px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full rounded-full mt-4 mx-auto max-w-7xl z-50 left-1/2 -translate-x-1/2 bg-zinc-950/70 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<div class="flex justify-between items-center w-full px-8 py-4">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-zinc-100 dark:text-zinc-50 font-headline">LandLedger</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-['Manrope'] uppercase tracking-widest text-[11px] font-bold text-zinc-400 hover:text-zinc-100 transition-colors" href="#">Home</a>
+<a class="font-['Manrope'] uppercase tracking-widest text-[11px] font-bold text-zinc-400 hover:text-zinc-100 transition-colors" href="#">About</a>
+<a class="font-['Manrope'] uppercase tracking-widest text-[11px] font-bold text-zinc-400 hover:text-zinc-100 transition-colors" href="#">How It Works</a>
+<a class="font-['Manrope'] uppercase tracking-widest text-[11px] font-bold text-zinc-400 hover:text-zinc-100 transition-colors" href="#">FAQs</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:block relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="bg-surface-container-lowest border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64 outline-none transition-all" placeholder="Search registry..." type="text"/>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest border border-outline-variant/20">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="professional corporate headshot of a man with short hair in a dark suit with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBTQR1bNKlh3xpYb_u75WeTCjXQoR7SdUQ9e5KLec7GA96ov6Bj7F-RojFX3zGV6QJb9dRArYAF-U4SuBS46oKwIohwNzIGNF2vH1eJOhvJWaV42muSfO3Y_j17FKtq1fgd4ytJGWafQydIzs7IDdt8COMbRbm9QVZH39FNxo2lZTA_yva209JKf_4WpKQQdoz-JxVyybBAsn0gKF6fPbbKRVmQdsnpv-kHsDHaeUczPjSMok6GILJSGxvtA7EasZG48lC-GUhHT_L"/>
+</div>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">account_circle</span>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 max-w-7xl mx-auto px-8">
+<!-- Header Section: Basic Info & Risk Status -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
+<div class="lg:col-span-8">
+<div class="flex items-center gap-4 mb-4">
+<span class="font-label text-xs font-bold uppercase tracking-[0.2em] text-primary">Asset Identification</span>
+<div class="h-px flex-1 bg-outline-variant/20"></div>
+</div>
+<h1 class="text-6xl font-headline font-extrabold tracking-tighter text-on-surface mb-2">LL-CN-992-PX02</h1>
+<p class="text-2xl font-headline font-light text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+                    Skyline Boulevard 402, Neo-Veridia Central
+                </p>
+<div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8">
+<div>
+<span class="block font-label text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Registered Owner</span>
+<p class="text-xl font-body font-semibold">Sovereign Estates Ltd.</p>
+</div>
+<div>
+<span class="block font-label text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Total Plot Area</span>
+<p class="text-xl font-body font-semibold">12,450.00 <span class="text-sm font-normal text-outline">SQM</span></p>
+</div>
+<div>
+<span class="block font-label text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Registry Date</span>
+<p class="text-xl font-body font-semibold">Oct 12, 2023</p>
+</div>
+</div>
+</div>
+<!-- Risk Status Badge (Bento Style) -->
+<div class="lg:col-span-4 bg-surface-container-low p-8 rounded-lg flex flex-col justify-between aspect-square lg:aspect-auto h-full border border-outline-variant/10">
+<div>
+<span class="font-label text-xs font-bold uppercase tracking-widest text-outline">Compliance Engine Status</span>
+<div class="mt-6 flex items-center gap-4">
+<div class="w-4 h-4 rounded-full bg-primary shadow-[0_0_15px_rgba(122,212,229,0.6)] animate-pulse"></div>
+<h2 class="text-4xl font-headline font-black text-primary">CLEAR</h2>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant leading-relaxed font-body">
+                        No active litigation, encumbrances are performing as agreed, and all municipal tax obligations are satisfied.
+                    </p>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/10">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-4 rounded-md transition-transform active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
+                        Download Certified Abstract
+                    </button>
+</div>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Ownership History Timeline -->
+<section class="lg:col-span-7 bg-surface-container-low rounded-lg p-10">
+<div class="flex items-center justify-between mb-12">
+<h3 class="text-2xl font-headline font-bold">Ownership History</h3>
+<span class="material-symbols-outlined text-outline" data-icon="history">history</span>
+</div>
+<div class="relative space-y-12 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/30">
+<!-- Current Owner -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-primary ring-4 ring-surface-container-low z-10"></div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-primary font-label">Current Title Holder</span>
+<h4 class="text-lg font-bold font-body">Sovereign Estates Ltd.</h4>
+</div>
+<span class="text-sm font-label text-outline">Oct 2023 - Present</span>
+</div>
+<p class="text-sm text-on-surface-variant">Acquired via Direct Purchase Agreement (Ref: #8829-X). Fully verified through decentralised ledger. No caveats noted.</p>
+</div>
+<!-- Previous 1 -->
+<div class="relative pl-10 opacity-60">
+<div class="absolute left-[5px] top-1 w-3 h-3 rounded-full bg-outline-variant ring-4 ring-surface-container-low z-10"></div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-outline font-label">Transfer of Title</span>
+<h4 class="text-lg font-bold font-body">Aeon Prime Development</h4>
+</div>
+<span class="text-sm font-label text-outline">May 2018 - Oct 2023</span>
+</div>
+<p class="text-sm text-on-surface-variant">Institutional divestment. Audit trail concludes with zero residual liability for the previous entity.</p>
+</div>
+<!-- Previous 2 -->
+<div class="relative pl-10 opacity-40">
+<div class="absolute left-[5px] top-1 w-3 h-3 rounded-full bg-outline-variant ring-4 ring-surface-container-low z-10"></div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-outline font-label">Initial Registration</span>
+<h4 class="text-lg font-bold font-body">Veridia Municipal Authority</h4>
+</div>
+<span class="text-sm font-label text-outline">Jan 2012 - May 2018</span>
+</div>
+<p class="text-sm text-on-surface-variant">Original crown-land conversion to commercial industrial zoning category.</p>
+</div>
+</div>
+</section>
+<!-- Encumbrances & Details (Bento Sub-Grid) -->
+<div class="lg:col-span-5 grid grid-cols-1 gap-8">
+<!-- Financial Encumbrance -->
+<div class="bg-surface-container-highest rounded-lg p-8 border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span>
+<h4 class="text-sm font-bold uppercase tracking-widest font-label">Loans &amp; Mortgages</h4>
+</div>
+<div class="space-y-6">
+<div class="flex justify-between items-center p-4 bg-surface-container-low rounded-md">
+<div>
+<p class="text-xs text-outline font-label">Capital Bank International</p>
+<p class="text-lg font-bold text-on-surface">$4,200,000</p>
+</div>
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest rounded-full border border-primary/20">Performing</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                            Secured against Title Deed LL-CN-992-PX02. Interest rate fixed at 3.4% until 2028.
+                        </p>
+</div>
+</div>
+<!-- Legal Integrity -->
+<div class="bg-surface-container-highest rounded-lg p-8 border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-tertiary" data-icon="gavel">gavel</span>
+<h4 class="text-sm font-bold uppercase tracking-widest font-label">Legal Proceedings</h4>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-md">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline" data-icon="search_check">search_check</span>
+<p class="text-sm font-medium">No active litigation records</p>
+</div>
+<span class="text-[10px] font-bold text-outline">LAST SCAN: 2H AGO</span>
+</div>
+</div>
+<!-- Tax Compliance -->
+<div class="bg-surface-container-highest rounded-lg p-8 border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="receipt_long">receipt_long</span>
+<h4 class="text-sm font-bold uppercase tracking-widest font-label">Municipal Tax Due</h4>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-4xl font-headline font-black text-on-surface">$0.00</p>
+<p class="text-xs text-outline mt-1 font-label">NEXT DUE: MAR 15, 2024</p>
+</div>
+<span class="text-xs text-primary font-bold">PAID IN FULL</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Property Visualization (Asymmetric Large Element) -->
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-zinc-800/50 bg-zinc-950">
+<div class="max-w-7xl mx-auto px-8 py-16 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2">
+<span class="text-lg font-black text-zinc-100 font-headline">LandLedger</span>
+<p class="font-['Inter'] text-sm leading-relaxed text-zinc-500">© 2024 LandLedger. Sovereign Intelligence for Property Assets.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-sm text-zinc-500 hover:text-cyan-300 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-sm text-zinc-500 hover:text-cyan-300 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-sm text-zinc-500 hover:text-cyan-300 transition-colors" href="#">Security Audit</a>
+<a class="font-['Inter'] text-sm text-zinc-500 hover:text-cyan-300 transition-colors" href="#">Compliance</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LandLedger | Sovereign Intelligence for Property Assets</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#001f25",
+                        "on-primary-container": "#daf8ff",
+                        "outline": "#889395",
+                        "surface-container-highest": "#333535",
+                        "on-primary-fixed-variant": "#004e59",
+                        "inverse-surface": "#e2e2e2",
+                        "on-surface": "#e2e2e2",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#ffb77c",
+                        "surface-dim": "#121414",
+                        "tertiary": "#ffb77c",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001f25",
+                        "inverse-primary": "#006876",
+                        "tertiary-container": "#9e6027",
+                        "surface-tint": "#7ad4e5",
+                        "on-secondary-container": "#9abbc2",
+                        "inverse-on-surface": "#2f3131",
+                        "surface-container": "#1e2020",
+                        "surface-container-high": "#282a2a",
+                        "primary": "#7ad4e5",
+                        "surface": "#121414",
+                        "secondary-fixed": "#c7e8f0",
+                        "on-surface-variant": "#bdc8cb",
+                        "surface-container-lowest": "#0d0f0f",
+                        "on-error": "#690005",
+                        "primary-fixed": "#a0efff",
+                        "secondary-fixed-dim": "#abccd4",
+                        "on-background": "#e2e2e2",
+                        "primary-fixed-dim": "#7ad4e5",
+                        "on-primary": "#00363e",
+                        "on-secondary": "#14353b",
+                        "on-tertiary": "#4d2600",
+                        "secondary": "#abccd4",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "on-tertiary-container": "#fff0e7",
+                        "tertiary-fixed": "#ffdcc3",
+                        "error-container": "#93000a",
+                        "background": "#121414",
+                        "secondary-container": "#2c4b52",
+                        "on-tertiary-fixed": "#2f1500",
+                        "outline-variant": "#3e494b",
+                        "surface-bright": "#383939",
+                        "surface-variant": "#333535",
+                        "on-secondary-fixed-variant": "#2c4b52",
+                        "surface-container-low": "#1a1c1c",
+                        "primary-container": "#007a8a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(18, 20, 20, 0.7);
+            backdrop-filter: blur(24px);
+        }
+        .data-blur {
+            filter: blur(8px);
+            user-select: none;
+            opacity: 0.5;
+        }
+        body {
+            background-color: #121414;
+            color: #e2e2e2;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 mt-4 px-4">
+<div class="max-w-7xl mx-auto rounded-full bg-zinc-950/70 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] flex justify-between items-center w-full px-8 py-4">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-zinc-100 dark:text-zinc-50 font-headline">LandLedger</span>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline uppercase tracking-widest text-[11px] font-black border-b-2 border-cyan-400 pb-1 text-cyan-400" href="#">Home</a>
+<a class="font-headline uppercase tracking-widest text-[11px] font-bold text-zinc-400 hover:text-zinc-100 transition-colors" href="#">About</a>
+<a class="font-headline uppercase tracking-widest text-[11px] font-bold text-zinc-400 hover:text-zinc-100 transition-colors" href="#">How It Works</a>
+<a class="font-headline uppercase tracking-widest text-[11px] font-bold text-zinc-400 hover:text-zinc-100 transition-colors" href="#">FAQs</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:block">
+<span class="material-symbols-outlined text-zinc-400 hover:text-zinc-100 cursor-pointer transition-colors" data-icon="search">search</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-800/50 hover:bg-zinc-800 transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-cyan-400 group-active:scale-95 duration-150 ease-in-out" data-icon="account_circle">account_circle</span>
+<span class="font-headline uppercase tracking-widest text-[11px] font-bold text-zinc-100">Login</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-surface/0 via-surface/80 to-surface z-10"></div>
+<img class="w-full h-full object-cover scale-105 opacity-40" data-alt="Cinematic wide shot of high-end architectural estate at twilight with soft interior lights and deep blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyls_jV-mEOYHTeIcZWdqnKmd9piS6y8T3npZX5Vw1187Dv56-XF3uiOdM_x2j5Cz5eaxPtUHVmPdSskzUoTpAK4aTwy8WTmGexlvh5j2gcXrSlwW8cdjT8wDZSV9LqiEae2fcBVXd5M-2w49ulIMo7h--D20YW57z5ygqjou5VjslD1mk3vVCICfAuvO9IXYHr5pHmrgta5CdBnPESSmdc-Lkhva4cnbeTI4OtoU3Xw8npu-XgNKd-vrJtB8Kamth4BrgKlHEKFWl"/>
+</div>
+<div class="container mx-auto px-8 relative z-20">
+<div class="max-w-4xl">
+<div class="flex items-center gap-4 mb-6">
+<span class="h-[1px] w-12 bg-primary"></span>
+<span class="font-headline uppercase tracking-[0.3em] text-primary text-xs font-bold">Secure Asset Intelligence</span>
+</div>
+<h1 class="text-7xl md:text-9xl font-headline font-extrabold tracking-tight text-on-surface mb-8 leading-[0.9]">
+                    Verify Property.<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">Eliminate Risk.</span>
+</h1>
+<p class="text-xl md:text-2xl text-on-surface-variant font-light mb-12 max-w-2xl leading-relaxed">
+                    Access high-fidelity property intelligence through our sovereign distributed ledger. Transparent, immutable, and precise.
+                </p>
+<div class="flex flex-wrap gap-6">
+<button class="px-10 py-5 rounded-md bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed font-bold tracking-tight hover:brightness-110 transition-all flex items-center gap-3">
+                        Explore Properties
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="px-10 py-5 rounded-md border border-outline-variant hover:bg-surface-container-low transition-all text-on-surface font-semibold">
+                        System Overview
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Dashboard Preview / Property Cards -->
+<section class="py-32 bg-surface-container-low relative">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
+<div class="max-w-xl">
+<h2 class="text-4xl md:text-5xl font-headline font-bold mb-6">Available Listings</h2>
+<p class="text-on-surface-variant text-lg">Public ledger entries for global verified real estate assets. Detailed ownership and encumbrance data requires authentication.</p>
+</div>
+<div class="flex gap-4">
+<div class="p-4 rounded-xl bg-surface-container-highest flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="verified">verified</span>
+<span class="text-sm font-label font-medium uppercase tracking-wider">12,402 Verified Assets</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid / Card Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="group relative bg-surface rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Modern luxury villa exterior with minimalist architecture and reflecting pool at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2yB9Q-KaKLqlwjfEYwoXHt2qUqpNJwMFB7W-dE6d1kiJnPOi-8Nzg5095_VGUxuvxyDtl-3_O55j2f4TFG5SL4hKU79Wx1BOc8qR5Oz84_kaWAU9goIdOT7LrBhAAzCSYgdIClWjWQ2faVnF3ywR2jvefjKd4AK95PblyobgNwvA5mBeLxnuJk7wrJz0HVFVlcIGFlowAMAfJr5F815XdLtmsH9cnTotVwqDyU_gDZZOYl8Pq2yae-Cu6KrLQZC0ZiwxuEoGMNxM9"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-primary/20 backdrop-blur-md text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/20">Residential</span>
+</div>
+</div>
+<div class="p-8">
+<div class="mb-6">
+<h3 class="text-2xl font-headline font-bold mb-1">Aurelian Heights</h3>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-sm font-label uppercase tracking-wide">Beverly Hills, CA</span>
+</div>
+</div>
+<div class="space-y-4 mb-8 pt-6 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Property ID</span>
+<span class="text-sm font-mono data-blur">LL-HIDDEN-4829</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Current Owner</span>
+<span class="text-sm data-blur">John D. *********</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Encumbrance</span>
+<span class="text-xs px-2 py-0.5 rounded bg-error-container/20 text-error font-medium data-blur">ACTIVE LIEN</span>
+</div>
+</div>
+<button class="w-full py-4 rounded-md bg-surface-container-highest border border-outline-variant/30 text-on-surface-variant font-bold flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+                            View Details
+                        </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative bg-surface rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Sleek commercial skyscraper with glass facade reflecting a bright blue morning sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2QV3rRuCWuj_dQ84SO6wTOmkrd6tB-CwED-qEmis-Nz_3GOD2HTdYeryQDbY6k2WLAMKlEmrqyA9dP94kIcUvpLCdhpP0x4HrKI6U5tTLHUO6q1me1PAa6mYt3Y6G_7J57UjaFfWBIsBuumJ8Po9kAUD0nHlda2VLPgfZX3nIwkg_b_a5CJAEm_eurY2sT9xCzK1HktmixOpsZ_HihgBmyAyuNYu7TE6m0kPkNGz_6cUIPTaTRV7-cMlMBNrH3ExidYFhQHExF4G1"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-tertiary/20 backdrop-blur-md text-tertiary text-[10px] font-bold uppercase tracking-widest border border-tertiary/20">Commercial</span>
+</div>
+</div>
+<div class="p-8">
+<div class="mb-6">
+<h3 class="text-2xl font-headline font-bold mb-1">Nexus Center</h3>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-sm font-label uppercase tracking-wide">Singapore, SG</span>
+</div>
+</div>
+<div class="space-y-4 mb-8 pt-6 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Property ID</span>
+<span class="text-sm font-mono data-blur">LL-SECURE-9102</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Current Owner</span>
+<span class="text-sm data-blur">Nexus Holdings Ltd.</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Encumbrance</span>
+<span class="text-xs px-2 py-0.5 rounded bg-primary/20 text-primary font-medium data-blur">NONE</span>
+</div>
+</div>
+<button class="w-full py-4 rounded-md bg-surface-container-highest border border-outline-variant/30 text-on-surface-variant font-bold flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+                            View Details
+                        </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative bg-surface rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Vast green agricultural landscape with cultivated fields stretching to the horizon under soft sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb-fAjjR-dvIXLBdRXUgYr8SOXUnUCMFAgoVACKwgtpQUKLJIRUPVMMt4MnwpcL5qYGLjqKx5LMXan4Y0jqa-9IP7tPcVlv3kuPpoRXzdv8qpBCHAGHwgIG3ah9ls7PH_fqQbyLhcXsTqaXBtroJr_p5mdJX3B2JOxK9PVbGByqkZZTfTygnX2ddFdJbrfzIxtAg2kpZBwBluudVwvm25LUSG_dfjR8QAkmy0tVtCkVCuiOM8nFJQI9iFVIUvTH4zv85ARKDKQrqNL"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-[10px] font-bold uppercase tracking-widest">Agricultural</span>
+</div>
+</div>
+<div class="p-8">
+<div class="mb-6">
+<h3 class="text-2xl font-headline font-bold mb-1">Valley Estate</h3>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-sm font-label uppercase tracking-wide">Tuscany, IT</span>
+</div>
+</div>
+<div class="space-y-4 mb-8 pt-6 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Property ID</span>
+<span class="text-sm font-mono data-blur">LL-LAND-1109</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Current Owner</span>
+<span class="text-sm data-blur">Family Trust Alpha</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-tighter text-outline font-bold">Encumbrance</span>
+<span class="text-xs px-2 py-0.5 rounded bg-tertiary-container/20 text-tertiary font-medium data-blur">PENDING CLEARANCE</span>
+</div>
+</div>
+<button class="w-full py-4 rounded-md bg-surface-container-highest border border-outline-variant/30 text-on-surface-variant font-bold flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+                            View Details
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Call to Action / Info Section -->
+<section class="py-40 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div class="order-2 lg:order-1">
+<div class="aspect-square rounded-lg bg-surface-container-low p-1 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+<img class="w-full h-full object-cover rounded-lg opacity-60" data-alt="Digital representation of complex data networks and glowing nodes on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDMDd_atPZIIYA0d9ukiv4QlaKHSvMM3IymCJ6MWzeaB8c6wgoSZhoD0D-paPGQ_IURUJBKxvbR5EkCDN3GixhCxE4G-V463ELlMfPGRc8CiCn_fAOBh3G4gn_ksgCwNeaGLM-ZwojE-OEquED7leY_vI3t6ayyDmhMReZ5w0rHAXMCa6nF_4HVc5L9A0iVlQGKVvMR_XxJx34UML9c5jXzP9cbARjJXbbjFfnYqOthxrtw2vl2VwzXfk5FWJxrCpu5dnUHXyY-N5J"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="p-8 glass-panel rounded-lg border border-outline-variant/20 max-w-xs text-center">
+<span class="material-symbols-outlined text-5xl text-primary mb-4" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+<h4 class="text-xl font-headline font-bold mb-2">Immutable Chain</h4>
+<p class="text-sm text-on-surface-variant">Every property interaction is cryptographically hashed and stored across our sovereign network.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<span class="font-headline uppercase tracking-widest text-primary font-bold text-sm mb-6 block">The Ledger Advantage</span>
+<h2 class="text-5xl md:text-6xl font-headline font-extrabold mb-8 leading-tight">Elite Precision for Property Vetting.</h2>
+<div class="space-y-8">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="shield_check">shield</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Zero-Knowledge Verification</h4>
+<p class="text-on-surface-variant leading-relaxed">Verify critical risk markers without exposing sensitive owner identity until the transaction layer.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="dataset">dataset</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Multi-Source Cross-Referencing</h4>
+<p class="text-on-surface-variant leading-relaxed">Our intelligence engine aggregates satellite, municipal, and legal data in real-time.</p>
+</div>
+</div>
+<div class="pt-8">
+<button class="group flex items-center gap-4 text-primary font-bold font-headline uppercase tracking-widest text-sm">
+                                View Compliance Standards
+                                <span class="h-[1px] w-8 bg-primary transition-all group-hover:w-16"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Guest Interstitial (Login Prompt) -->
+<section class="py-24 bg-surface-container-lowest border-y border-outline-variant/10">
+<div class="max-w-4xl mx-auto px-8 text-center">
+<h3 class="text-3xl font-headline font-bold mb-4">Want to access full property details?</h3>
+<p class="text-on-surface-variant mb-10 text-lg">Login to access Property IDs, Owner Names, and Encumbrance details.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="px-12 py-4 rounded-md bg-zinc-100 text-zinc-950 font-bold hover:bg-white transition-colors">Login to LandLedger</button>
+<button class="px-12 py-4 rounded-md border border-outline-variant hover:bg-surface-container-low transition-all text-on-surface font-semibold">Request Access</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-zinc-950 w-full border-t border-zinc-800/50">
+<div class="max-w-7xl mx-auto px-8 py-16 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="text-lg font-black text-zinc-100 font-headline">LandLedger</span>
+<p class="font-['Inter'] text-sm leading-relaxed text-zinc-500 max-w-xs text-center md:text-left">
+                    © 2024 LandLedger. Sovereign Intelligence for Property Assets.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Inter'] text-sm text-zinc-500 hover:text-cyan-300 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-sm text-zinc-500 hover:text-cyan-300 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-sm text-zinc-500 hover:text-cyan-300 transition-colors" href="#">Security Audit</a>
+<a class="font-['Inter'] text-sm text-zinc-500 hover:text-cyan-300 transition-colors" href="#">Compliance</a>
+</div>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer hover:text-cyan-300 transition-all" data-icon="terminal">terminal</span>
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer hover:text-cyan-300 transition-all" data-icon="lan">lan</span>
+</div>
+</div>
+</footer>
+</body></html>

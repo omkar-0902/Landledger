@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Login | LandLedger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#14353b",
+                      "surface-container-high": "#282a2a",
+                      "on-tertiary": "#4d2600",
+                      "surface-tint": "#7ad4e5",
+                      "primary-container": "#007a8a",
+                      "inverse-surface": "#e2e2e2",
+                      "surface": "#121414",
+                      "surface-container-low": "#1a1c1c",
+                      "on-error": "#690005",
+                      "on-secondary-fixed": "#001f25",
+                      "on-error-container": "#ffdad6",
+                      "tertiary": "#ffb77c",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed": "#2f1500",
+                      "tertiary-fixed": "#ffdcc3",
+                      "background": "#121414",
+                      "surface-container": "#1e2020",
+                      "secondary": "#abccd4",
+                      "on-secondary-container": "#9abbc2",
+                      "surface-variant": "#333535",
+                      "on-background": "#e2e2e2",
+                      "secondary-fixed-dim": "#abccd4",
+                      "surface-dim": "#121414",
+                      "on-surface": "#e2e2e2",
+                      "on-secondary-fixed-variant": "#2c4b52",
+                      "on-tertiary-container": "#fff0e7",
+                      "tertiary-fixed-dim": "#ffb77c",
+                      "tertiary-container": "#9e6027",
+                      "surface-bright": "#383939",
+                      "secondary-fixed": "#c7e8f0",
+                      "primary-fixed": "#a0efff",
+                      "on-surface-variant": "#bdc8cb",
+                      "surface-container-highest": "#333535",
+                      "on-primary-container": "#daf8ff",
+                      "primary": "#7ad4e5",
+                      "on-tertiary-fixed-variant": "#6e3900",
+                      "on-primary-fixed-variant": "#004e59",
+                      "inverse-primary": "#006876",
+                      "outline-variant": "#3e494b",
+                      "primary-fixed-dim": "#7ad4e5",
+                      "surface-container-lowest": "#0d0f0f",
+                      "inverse-on-surface": "#2f3131",
+                      "outline": "#889395",
+                      "error-container": "#93000a",
+                      "on-primary": "#00363e",
+                      "secondary-container": "#2c4b52",
+                      "on-primary-fixed": "#001f25"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121414;
+        }
+        .headline-text {
+            font-family: 'Manrope', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(40, 42, 42, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .bg-security-grid {
+            background-image: radial-gradient(#333535 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary/30 min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<!-- Suppression logic: Displaying TopNavBar as this is a login screen but instructions requested "TopNavBar should show guest state" -->
+<nav class="fixed top-0 w-full z-50 bg-[#121414]/70 backdrop-blur-3xl flex justify-between items-center px-8 h-20 w-full">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold tracking-tighter text-[#e2e2e2] headline-text">LandLedger</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<span class="text-[#e2e2e2]/60 hover:text-[#e2e2e2] font-medium transition-all cursor-pointer font-['Manrope'] tracking-tight">Intelligence</span>
+<span class="text-[#e2e2e2]/60 hover:text-[#e2e2e2] font-medium transition-all cursor-pointer font-['Manrope'] tracking-tight">Security</span>
+<span class="text-[#e2e2e2]/60 hover:text-[#e2e2e2] font-medium transition-all cursor-pointer font-['Manrope'] tracking-tight">Network</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="p-2 rounded-full hover:bg-[#333535]/20 transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[#7ad4e5]" data-icon="shield">shield</span>
+</div>
+<button class="px-6 py-2 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-md font-semibold text-sm transition-transform active:scale-95 duration-200 ease-in-out">
+                Secure Login
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center relative px-6 py-24 overflow-hidden">
+<!-- Atmospheric Background Elements -->
+<div class="absolute inset-0 bg-security-grid pointer-events-none"></div>
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<!-- Abstract Cryptographic Nodes Decoration -->
+<div class="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+<svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+<circle cx="10%" cy="20%" fill="#7ad4e5" r="2"></circle>
+<circle cx="85%" cy="15%" fill="#7ad4e5" r="2"></circle>
+<circle cx="90%" cy="80%" fill="#7ad4e5" r="2"></circle>
+<circle cx="5%" cy="75%" fill="#7ad4e5" r="2"></circle>
+<path d="M 10% 20% L 30% 40% L 20% 60% L 10% 20%" fill="none" stroke="#7ad4e5" stroke-width="0.5"></path>
+<path d="M 85% 15% L 70% 35% L 90% 50% L 85% 15%" fill="none" stroke="#7ad4e5" stroke-width="0.5"></path>
+</svg>
+</div>
+<!-- Login Card -->
+<div class="w-full max-w-md relative z-10">
+<div class="glass-panel border border-outline-variant/10 rounded-lg p-10 shadow-2xl">
+<div class="text-center mb-10">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-surface-container-highest rounded-2xl mb-6 shadow-inner border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<h1 class="text-3xl font-bold headline-text text-on-surface mb-2 tracking-tight">Access Digital Vault</h1>
+<p class="text-on-surface-variant font-body text-sm leading-relaxed">
+                        Authorized personnel only. Your activity is being monitored and logged for security audit purposes.
+                    </p>
+</div>
+<form class="space-y-6">
+<!-- Email/Username Field -->
+<div class="space-y-2">
+<label class="text-xs uppercase tracking-widest text-outline font-bold ml-1" for="identity">Credential ID</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors text-xl" data-icon="fingerprint">fingerprint</span>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-md py-4 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all duration-300 font-body" id="identity" placeholder="Email or Username" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="text-xs uppercase tracking-widest text-outline font-bold" for="password">Security Key</label>
+<a class="text-xs text-primary/70 hover:text-primary transition-colors font-medium" href="#">Forgot Password?</a>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors text-xl" data-icon="key">key</span>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-md py-4 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all duration-300 font-body" id="password" placeholder="••••••••••••" type="password"/>
+<div class="absolute inset-y-0 right-0 pr-4 flex items-center">
+<button class="text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-4 space-y-4">
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-md shadow-lg shadow-primary/10 hover:shadow-primary/20 hover:brightness-110 active:scale-[0.98] transition-all duration-200 headline-text tracking-wide flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-xl" data-icon="verified_user">verified_user</span>
+                            Secure Login
+                        </button>
+<div class="flex items-center gap-4 py-2">
+<div class="h-px flex-grow bg-outline-variant/20"></div>
+<span class="text-[10px] uppercase tracking-[0.2em] text-outline font-bold">Protocol</span>
+<div class="h-px flex-grow bg-outline-variant/20"></div>
+</div>
+<button class="w-full py-4 bg-transparent border border-outline-variant/30 text-on-surface font-semibold rounded-md hover:bg-surface-container-highest transition-colors active:scale-[0.98] duration-200 font-body text-sm" type="button">
+                            Request Access
+                        </button>
+</div>
+</form>
+<!-- Status Footer -->
+<div class="mt-10 flex items-center justify-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] uppercase tracking-wider text-outline font-bold">Node: LDG-7412</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="encrypted">encrypted</span>
+<span class="text-[10px] uppercase tracking-wider text-outline font-bold">AES-256 Enabled</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-[#121414] w-full border-t border-[#333535]/15 flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full">
+<div class="mb-8 md:mb-0">
+<span class="text-lg font-black text-[#e2e2e2] headline-text tracking-tighter">LandLedger</span>
+<p class="text-[#e2e2e2]/40 text-xs mt-2 font-['Inter'] uppercase tracking-widest">Sovereign Property Intelligence</p>
+</div>
+<div class="flex flex-col items-center md:items-end gap-6">
+<div class="flex gap-8">
+<a class="text-[#e2e2e2]/40 hover:text-[#7ad4e5] transition-colors font-['Inter'] text-sm tracking-wide uppercase" href="#">Security Protocol</a>
+<a class="text-[#e2e2e2]/40 hover:text-[#7ad4e5] transition-colors font-['Inter'] text-sm tracking-wide uppercase" href="#">Privacy Policy</a>
+<a class="text-[#e2e2e2]/40 hover:text-[#7ad4e5] transition-colors font-['Inter'] text-sm tracking-wide uppercase" href="#">Terms of Service</a>
+</div>
+<p class="text-[#e2e2e2]/40 text-[10px] font-['Inter'] tracking-widest uppercase">
+                © 2024 Sovereign Intelligence. All Rights Reserved.
+            </p>
+</div>
+</footer>
+</body></html>

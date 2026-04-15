@@ -3,17 +3,38 @@ import { useNavigate } from "react-router-dom";
 import { Footer } from "../components/Footer";
 import { LockedText } from "../components/Locked";
 import { TopNav } from "../components/TopNav";
-import { landImages, propertyDetails } from "../data/property";
+import { landImages, propertyDetails, allProperties } from "../data/property";
 import { useAuth } from "../state/auth";
 
 export function LandingLoggedInPage() {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const locked = !isAuthenticated;
-  const { property } = propertyDetails;
+  
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [selectedCity, setSelectedCity] = React.useState("All Cities");
+  const [isFilterOpen, setIsFilterOpen] = React.useState(false);
+
+  const cities = ["All Cities", ...Array.from(new Set(allProperties.map(p => p.location)))];
+
+  const filteredProperties = allProperties.filter(p => {
+    const matchesSearch = p.ownerName.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                         p.propertyId.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCity = selectedCity === "All Cities" || p.location === selectedCity;
+    return matchesSearch && matchesCity;
+  });
+
+  const displayImages = [
+    landImages.fieldParcel,
+    landImages.lushValley,
+    landImages.estateGrid,
+    landImages.mountainLand,
+    landImages.sunsetField,
+    landImages.greenMeadow
+  ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-surface">
       <TopNav mode="logged-in" />
 
       <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto">
@@ -40,7 +61,7 @@ export function LandingLoggedInPage() {
           </div>
         </section>
 
-        <div className="mb-12 flex flex-col md:flex-row gap-4 items-center">
+        <div className="mb-12 flex flex-col md:flex-row gap-4 items-center relative z-20">
           <div className="relative w-full">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined" aria-hidden="true">
               search
@@ -49,176 +70,134 @@ export function LandingLoggedInPage() {
               className="w-full bg-surface-container-lowest border border-outline-variant/15 rounded-md py-4 pl-12 pr-4 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none text-on-surface"
               placeholder="Search decrypted ledger IDs or owner names..."
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <button
-            type="button"
-            onClick={() => navigate("/property/secondary")}
-            className="bg-surface-container-high px-6 py-4 rounded-md flex items-center gap-2 hover:bg-surface-container-highest transition-colors text-sm font-bold uppercase tracking-widest whitespace-nowrap active:scale-[0.98]"
-          >
-            <span className="material-symbols-outlined text-sm" aria-hidden="true">
-              filter_list
-            </span>{" "}
-            Filters
-          </button>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              className={`px-6 py-4 rounded-md flex items-center gap-2 transition-all text-sm font-bold uppercase tracking-widest whitespace-nowrap active:scale-[0.98] ${
+                isFilterOpen || selectedCity !== "All Cities" 
+                ? "bg-primary text-on-primary shadow-lg shadow-primary/20" 
+                : "bg-surface-container-high hover:bg-surface-container-highest text-on-surface"
+              }`}
+            >
+              <span className="material-symbols-outlined text-sm" aria-hidden="true">
+                filter_list
+              </span>
+              {selectedCity === "All Cities" ? "Filters" : selectedCity}
+            </button>
+            
+            {isFilterOpen && (
+              <>
+                <div 
+                  className="fixed inset-0 z-10" 
+                  onClick={() => setIsFilterOpen(false)}
+                ></div>
+                <div className="absolute right-0 mt-2 w-56 bg-surface-container-high border border-outline-variant/20 rounded-lg shadow-2xl overflow-hidden z-20 animate-in fade-in zoom-in duration-200">
+                  <div className="p-3 border-b border-outline-variant/10">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline">Filter by City</span>
+                  </div>
+                  <div className="py-1">
+                    {cities.map((city) => (
+                      <button
+                        key={city}
+                        onClick={() => {
+                          setSelectedCity(city);
+                          setIsFilterOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-primary/10 flex items-center justify-between ${
+                          selectedCity === city ? "text-primary font-bold bg-primary/5" : "text-on-surface"
+                        }`}
+                      >
+                        {city}
+                        {selectedCity === city && (
+                          <span className="material-symbols-outlined text-sm">check</span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="group bg-surface-container-low rounded-lg overflow-hidden border border-transparent hover:border-primary/20 transition-all duration-500 hover:translate-y-[-4px]">
-            <div className="relative h-64 overflow-hidden">
-              <img
-                alt="Open verified land parcel with green fields and surveyable terrain"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                src={landImages.fieldParcel}
-              />
-              <div className="absolute top-4 left-4 bg-primary/90 text-on-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase">
-                Verified Asset
-              </div>
-              <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-surface-container-low to-transparent"></div>
-            </div>
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <p className="text-[10px] font-headline font-bold text-primary uppercase tracking-[0.2em]">Asset ID: {property.propertyId}</p>
-                  <h3 className="text-2xl font-headline font-bold mt-1">{property.location} Parcel</h3>
-                </div>
-                <span className="bg-tertiary/10 text-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Loan Active</span>
-              </div>
-              <div className="space-y-4 border-t border-outline-variant/10 pt-6 mb-8">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Property ID</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    {property.propertyId}
-                  </LockedText>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Owner Name</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    {property.ownerName}
-                  </LockedText>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Location</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    {property.location}
-                  </LockedText>
-                </div>
-              </div>
-              <button
-                className="w-full py-4 bg-primary text-on-primary-fixed font-bold rounded-md flex items-center justify-center gap-2 hover:brightness-110 transition-all active:scale-95 group/btn"
-                onClick={() => (locked ? navigate("/login") : navigate("/property/primary"))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
+          {filteredProperties.length > 0 ? (
+            filteredProperties.map((prop, idx) => (
+              <div 
+                key={prop.id}
+                className="group bg-surface-container-low rounded-lg overflow-hidden border border-transparent hover:border-primary/20 transition-all duration-500 hover:translate-y-[-4px]"
               >
-                REVIEW LOAN DETAILS
-                <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform" aria-hidden="true">
-                  arrow_forward
-                </span>
-              </button>
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    alt="Verified land parcel"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    src={displayImages[idx % displayImages.length]}
+                  />
+                  <div className={`absolute top-4 left-4 ${idx % 3 === 1 ? 'bg-tertiary text-on-tertiary' : 'bg-primary/90 text-on-primary'} px-3 py-1 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase`}>
+                    {idx % 3 === 1 ? 'Case Pending' : 'Verified Asset'}
+                  </div>
+                  <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+                </div>
+                <div className="p-8">
+                  <div className="flex justify-between items-start mb-6">
+                    <div>
+                      <p className="text-[10px] font-headline font-bold text-primary uppercase tracking-[0.2em]">Asset ID: {prop.propertyId}</p>
+                      <h3 className="text-2xl font-headline font-bold mt-1">{prop.location}</h3>
+                    </div>
+                    {idx % 3 === 1 ? (
+                      <span className="bg-error-container/20 text-error px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">High Risk</span>
+                    ) : (
+                      <span className="bg-tertiary/10 text-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">{idx % 3 === 2 ? 'Tax Due' : 'Loan Active'}</span>
+                    )}
+                  </div>
+                  <div className="space-y-4 border-t border-outline-variant/10 pt-6 mb-8">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-outline font-medium">Property ID</span>
+                      <LockedText locked={locked} className="text-sm font-bold text-on-surface">
+                        {prop.propertyId}
+                      </LockedText>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-outline font-medium">Owner Name</span>
+                      <LockedText locked={locked} className="text-sm font-bold text-on-surface">
+                        {prop.ownerName}
+                      </LockedText>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-outline font-medium">Location</span>
+                      <LockedText locked={locked} className="text-sm font-bold text-on-surface">
+                        {prop.location}
+                      </LockedText>
+                    </div>
+                  </div>
+                  <button
+                    className={`w-full py-4 ${idx % 3 === 1 ? 'border border-tertiary/50 text-tertiary hover:bg-tertiary hover:text-on-tertiary' : 'bg-primary text-on-primary-fixed hover:brightness-110'} font-bold rounded-md flex items-center justify-center gap-2 transition-all active:scale-95 group/btn`}
+                    onClick={() => (locked ? navigate("/login") : navigate(idx % 3 === 1 ? "/property/secondary" : "/property/primary"))}
+                  >
+                    {idx % 3 === 1 ? 'REVIEW CASE FILE' : idx % 3 === 2 ? 'RESOLVE TAX ISSUE' : 'REVIEW LOAN DETAILS'}
+                    <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform" aria-hidden="true">
+                      {idx % 3 === 1 ? 'security' : 'arrow_forward'}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full py-24 text-center">
+              <div className="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="material-symbols-outlined text-outline text-4xl">search_off</span>
+              </div>
+              <h3 className="text-xl font-bold font-headline mb-2">No Verified Assets Found</h3>
+              <p className="text-on-surface-variant max-w-sm mx-auto">
+                Our ledger doesn't contain records for "{searchQuery}" in {selectedCity}. Try adjusting your decryption parameters.
+              </p>
             </div>
-          </div>
-
-          <div className="group bg-surface-container-low rounded-lg overflow-hidden border border-transparent hover:border-tertiary/20 transition-all duration-500 hover:translate-y-[-4px]">
-            <div className="relative h-64 overflow-hidden">
-              <img
-                alt="Green land parcel with terrain and visible field divisions"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                src={landImages.estateGrid}
-              />
-              <div className="absolute top-4 left-4 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase">
-                Case Pending
-              </div>
-              <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-surface-container-low to-transparent"></div>
-            </div>
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <p className="text-[10px] font-headline font-bold text-tertiary uppercase tracking-[0.2em]">Asset ID: PROP002</p>
-                  <h3 className="text-2xl font-headline font-bold mt-1">North Taluk Plot</h3>
-                </div>
-                <span className="bg-error-container/20 text-error px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">High Risk</span>
-              </div>
-              <div className="space-y-4 border-t border-outline-variant/10 pt-6 mb-8">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Property ID</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    PROP002
-                  </LockedText>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Owner Name</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    Kavitha M.
-                  </LockedText>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Location</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    Bangalore Rural
-                  </LockedText>
-                </div>
-              </div>
-              <button
-                className="w-full py-4 border border-tertiary/50 text-tertiary font-bold rounded-md flex items-center justify-center gap-2 hover:bg-tertiary hover:text-on-tertiary transition-all active:scale-95 group/btn"
-                onClick={() => (locked ? navigate("/login") : navigate("/property/secondary"))}
-              >
-                REVIEW CASE FILE
-                <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform" aria-hidden="true">
-                  security
-                </span>
-              </button>
-            </div>
-          </div>
-
-          <div className="group bg-surface-container-low rounded-lg overflow-hidden border border-transparent hover:border-primary/20 transition-all duration-500 hover:translate-y-[-4px]">
-            <div className="relative h-64 overflow-hidden">
-              <img
-                alt="Agricultural land holding with wide open fields"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                src={landImages.fieldParcel}
-              />
-              <div className="absolute top-4 left-4 bg-primary/90 text-on-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase">
-                Verified Asset
-              </div>
-              <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-surface-container-low to-transparent"></div>
-            </div>
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <p className="text-[10px] font-headline font-bold text-primary uppercase tracking-[0.2em]">Asset ID: PROP003</p>
-                  <h3 className="text-2xl font-headline font-bold mt-1">Canal Road Farm</h3>
-                </div>
-                <span className="bg-tertiary/10 text-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Tax Due</span>
-              </div>
-              <div className="space-y-4 border-t border-outline-variant/10 pt-6 mb-8">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Property ID</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    PROP003
-                  </LockedText>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Owner Name</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    Prakash Gowda
-                  </LockedText>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-outline font-medium">Location</span>
-                  <LockedText locked={locked} className="text-sm font-bold text-on-surface">
-                    Mandya, KA
-                  </LockedText>
-                </div>
-              </div>
-              <button
-                className="w-full py-4 bg-primary text-on-primary-fixed font-bold rounded-md flex items-center justify-center gap-2 hover:brightness-110 transition-all active:scale-95 group/btn"
-                onClick={() => (locked ? navigate("/login") : navigate("/property/primary"))}
-              >
-                RESOLVE TAX ISSUE
-                <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform" aria-hidden="true">
-                  arrow_forward
-                </span>
-              </button>
-            </div>
-          </div>
+          )}
         </div>
 
         <section className="mt-24">
@@ -245,8 +224,8 @@ export function LandingLoggedInPage() {
                   verified
                 </span>
                 <div className="flex-grow">
-                  <p className="text-sm font-bold text-on-surface">Title record verified: {property.propertyId}</p>
-                  <p className="text-xs text-outline">Ownership confirmed for {property.ownerName}; SBI loan remains active.</p>
+                  <p className="text-sm font-bold text-on-surface">Title record verified: {filteredProperties[0]?.propertyId || "PROP001"}</p>
+                  <p className="text-xs text-outline">Ownership confirmed for {filteredProperties[0]?.ownerName || "Ramesh"}; SBI loan remains active.</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs font-bold text-on-surface">08:22 AM</p>

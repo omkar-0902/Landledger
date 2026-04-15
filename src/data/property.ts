@@ -19,14 +19,46 @@ export type PropertyDetailsResponse = {
   encumbrances: EncumbranceRecord[];
 };
 
-export const propertyDetails: PropertyDetailsResponse = {
-  property: {
+export const allProperties: PropertyRecord[] = [
+  {
     id: "7e7a7380-3e20-4b75-9fdb-da39309a5bcb",
     propertyId: "PROP001",
     ownerName: "Ramesh",
     location: "Bangalore",
     surveyNumber: "SN-123",
   },
+  {
+    id: "8f8b8491-4f31-5c86-0geca40b6cdcb",
+    propertyId: "PROP002",
+    ownerName: "Kavitha M.",
+    location: "Bangalore",
+    surveyNumber: "SN-456",
+  },
+  {
+    id: "9g9c9502-5g42-6d97-1hfdb51c7dedc",
+    propertyId: "PROP003",
+    ownerName: "Prakash Gowda",
+    location: "Mandya",
+    surveyNumber: "SN-789",
+  },
+  {
+    id: "0h0d0613-6h53-7e08-2igec62d8efe",
+    propertyId: "PROP004",
+    ownerName: "Anitha R.",
+    location: "Mysore",
+    surveyNumber: "SN-012",
+  },
+  {
+    id: "1i1e1724-7i64-8f19-3jhfd73e9fgf",
+    propertyId: "PROP005",
+    ownerName: "Suresh K.",
+    location: "Mysore",
+    surveyNumber: "SN-345",
+  },
+];
+
+export const propertyDetails: PropertyDetailsResponse = {
+  property: allProperties[0],
   encumbrances: [
     {
       id: "57d885d2-8526-41da-aec2-cdca981652d1",
@@ -39,8 +71,10 @@ export const propertyDetails: PropertyDetailsResponse = {
 };
 
 export const landImages = {
-  fieldParcel:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuBb-fAjjR-dvIXLBdRXUgYr8SOXUnUCMFAgoVACKwgtpQUKLJIRUPVMMt4MnwpcL5qYGLjqKx5LMXan4Y0jqa-9IP7tPcVlv3kuPpoRXzdv8qpBCHAGHwgIG3ah9ls7PH_fqQbyLhcXsTqaXBtroJr_p5mdJX3B2JOxK9PVbGByqkZZTfTygnX2ddFdJbrfzIxtAg2kpZBwBluudVwvm25LUSG_dfjR8QAkmy0tVtCkVCuiOM8nFJQI9iFVIUvTH4zv85ARKDKQrqNL",
-  estateGrid:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDDMDd_atPZIIYA0d9ukiv4QlaKHSvMM3IymCJ6MWzeaB8c6wgoSZhoD0D-paPGQ_IURUJBKxvbR5EkCDN3GixhCxE4G-V463ELlMfPGRc8CiCn_fAOBh3G4gn_ksgCwNeaGLM-ZwojE-OEquED7leY_vI3t6ayyDmhMReZ5w0rHAXMCa6nF_4HVc5L9A0iVlQGKVvMR_XxJx34UML9c5jXzP9cbARjJXbbjFfnYqOthxrtw2vl2VwzXfk5FWJxrCpu5dnUHXyY-N5J",
+  fieldParcel: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
+  estateGrid: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80",
+  lushValley: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80",
+  mountainLand: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+  sunsetField: "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=800&q=80",
+  greenMeadow: "https://images.unsplash.com/photo-1518173946687-a4c8a9ed330f?auto=format&fit=crop&w=800&q=80",
 };

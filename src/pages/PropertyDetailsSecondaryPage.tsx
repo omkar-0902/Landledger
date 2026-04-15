@@ -1,10 +1,22 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { ContactGate } from "../components/ContactGate";
 import { Footer } from "../components/Footer";
 import { TopNav } from "../components/TopNav";
+import { propertyDetails } from "../data/property";
+import { useAuth } from "../state/auth";
 
 export function PropertyDetailsSecondaryPage() {
-  const navigate = useNavigate();
+  const { contactVerified } = useAuth();
+  const { property, encumbrances } = propertyDetails;
+  const activeEncumbrance = encumbrances.find((item) => item.status === "ACTIVE");
+  const hasActiveEncumbrance = Boolean(activeEncumbrance);
+  const maskedSurveyNumber = "SN-XXX";
+  const maskedLoanDescription = "Loan from SBI - Rs. XX,XX,XXX outstanding";
+  const visibleSurveyNumber = contactVerified ? property.surveyNumber : maskedSurveyNumber;
+  const visibleLoanDescription = contactVerified && activeEncumbrance ? activeEncumbrance.description : maskedLoanDescription;
+  const sensitiveHighlight = contactVerified
+    ? "rounded-md bg-primary/10 px-2 py-1 text-primary ring-1 ring-primary/30 shadow-[0_0_18px_rgba(122,212,229,0.12)]"
+    : "";
 
   return (
     <div className="min-h-screen">
@@ -17,27 +29,21 @@ export function PropertyDetailsSecondaryPage() {
               <span className="font-label text-xs font-bold uppercase tracking-[0.2em] text-primary">Asset Identification</span>
               <div className="h-px flex-1 bg-outline-variant/20"></div>
             </div>
-            <h1 className="text-6xl font-headline font-extrabold tracking-tighter text-on-surface mb-2">LL-CN-992-PX02</h1>
+            <h1 className="text-6xl font-headline font-extrabold tracking-tighter text-on-surface mb-2">{property.propertyId}</h1>
             <p className="text-2xl font-headline font-light text-on-surface-variant flex items-center gap-2">
               <span className="material-symbols-outlined text-primary" aria-hidden="true">
                 location_on
               </span>
-              Skyline Boulevard 402, Neo-Veridia Central
+              {property.location}
             </p>
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div>
                 <span className="block font-label text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Registered Owner</span>
-                <p className="text-xl font-body font-semibold">Sovereign Estates Ltd.</p>
+                <p className="text-xl font-body font-semibold">{property.ownerName}</p>
               </div>
               <div>
-                <span className="block font-label text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Total Plot Area</span>
-                <p className="text-xl font-body font-semibold">
-                  12,450.00 <span className="text-sm font-normal text-outline">SQM</span>
-                </p>
-              </div>
-              <div>
-                <span className="block font-label text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Registry Date</span>
-                <p className="text-xl font-body font-semibold">Oct 12, 2023</p>
+                <span className="block font-label text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Survey Number</span>
+                <p className={`inline-block text-xl font-body font-semibold ${sensitiveHighlight}`}>{visibleSurveyNumber}</p>
               </div>
             </div>
           </div>
@@ -46,23 +52,26 @@ export function PropertyDetailsSecondaryPage() {
             <div>
               <span className="font-label text-xs font-bold uppercase tracking-widest text-outline">Compliance Engine Status</span>
               <div className="mt-6 flex items-center gap-4">
-                <div className="w-4 h-4 rounded-full bg-primary shadow-[0_0_15px_rgba(122,212,229,0.6)] animate-pulse"></div>
-                <h2 className="text-4xl font-headline font-black text-primary">CLEAR</h2>
+                <div className={`w-4 h-4 rounded-full animate-pulse ${hasActiveEncumbrance ? "bg-tertiary shadow-[0_0_15px_rgba(255,183,124,0.6)]" : "bg-primary shadow-[0_0_15px_rgba(122,212,229,0.6)]"}`}></div>
+                <h2 className={`text-4xl font-headline font-black ${hasActiveEncumbrance ? "text-tertiary" : "text-primary"}`}>
+                  {hasActiveEncumbrance ? "ACTIVE" : "CLEAR"}
+                </h2>
               </div>
-              <p className="mt-4 text-sm text-on-surface-variant leading-relaxed font-body">
-                No active litigation, encumbrances are performing as agreed, and all municipal tax obligations are satisfied.
-              </p>
             </div>
             <div className="mt-8 pt-8 border-t border-outline-variant/10">
               <button
                 type="button"
-                onClick={() => navigate("/secure-access-enhanced")}
-                className="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-4 rounded-md transition-transform active:scale-95 flex items-center justify-center gap-2"
+                disabled={!contactVerified}
+                className={`w-full font-bold py-4 rounded-md transition-all active:scale-95 flex items-center justify-center gap-2 ${
+                  contactVerified
+                    ? "bg-gradient-to-r from-primary to-primary-container text-on-primary shadow-lg shadow-primary/10"
+                    : "bg-surface-container-highest border border-outline-variant/30 text-outline cursor-not-allowed opacity-80"
+                }`}
               >
                 <span className="material-symbols-outlined text-sm" aria-hidden="true">
-                  verified
+                  {contactVerified ? "verified" : "lock"}
                 </span>
-                Download Certified Abstract
+                {contactVerified ? "Download Certified Abstract" : "Certified Abstract Locked"}
               </button>
             </div>
           </div>
@@ -82,12 +91,12 @@ export function PropertyDetailsSecondaryPage() {
                 <div className="flex justify-between items-start mb-2">
                   <div>
                     <span className="text-xs font-bold uppercase tracking-widest text-primary font-label">Current Title Holder</span>
-                    <h4 className="text-lg font-bold font-body">Sovereign Estates Ltd.</h4>
+                    <h4 className="text-lg font-bold font-body">{property.ownerName}</h4>
                   </div>
-                  <span className="text-sm font-label text-outline">Oct 2023 - Present</span>
+                  <span className="text-sm font-label text-outline">Current</span>
                 </div>
                 <p className="text-sm text-on-surface-variant">
-                  Acquired via Direct Purchase Agreement (Ref: #8829-X). Fully verified through decentralised ledger. No caveats noted.
+                  Active title record for {property.propertyId}, linked to survey number {visibleSurveyNumber} in {property.location}.
                 </p>
               </div>
               <div className="relative pl-10 opacity-60">
@@ -130,15 +139,17 @@ export function PropertyDetailsSecondaryPage() {
               <div className="space-y-6">
                 <div className="flex justify-between items-center p-4 bg-surface-container-low rounded-md">
                   <div>
-                    <p className="text-xs text-outline font-label">Capital Bank International</p>
-                    <p className="text-lg font-bold text-on-surface">$4,200,000</p>
+                    <p className="text-xs text-outline font-label">{activeEncumbrance?.type ?? "No Encumbrance"}</p>
+                    <p className={`text-lg font-bold ${activeEncumbrance ? sensitiveHighlight || "text-on-surface" : "text-on-surface"}`}>
+                      {activeEncumbrance ? visibleLoanDescription : "Clear title"}
+                    </p>
                   </div>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest rounded-full border border-primary/20">
-                    Performing
+                  <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full border ${hasActiveEncumbrance ? "bg-tertiary/10 text-tertiary border-tertiary/20" : "bg-primary/10 text-primary border-primary/20"}`}>
+                    {activeEncumbrance?.status ?? "NONE"}
                   </span>
                 </div>
                 <p className="text-xs text-on-surface-variant leading-relaxed">
-                  Secured against Title Deed LL-CN-992-PX02. Interest rate fixed at 3.4% until 2028.
+                  Linked to property ID {property.propertyId}. Encumbrance record count: {encumbrances.length}.
                 </p>
               </div>
             </div>
@@ -170,7 +181,7 @@ export function PropertyDetailsSecondaryPage() {
               </div>
               <div className="flex justify-between items-end">
                 <div>
-                  <p className="text-4xl font-headline font-black text-on-surface">$0.00</p>
+                  <p className="text-4xl font-headline font-black text-on-surface">Rs. 0</p>
                   <p className="text-xs text-outline mt-1 font-label">NEXT DUE: MAR 15, 2024</p>
                 </div>
                 <span className="text-xs text-primary font-bold">PAID IN FULL</span>
@@ -178,10 +189,11 @@ export function PropertyDetailsSecondaryPage() {
             </div>
           </div>
         </div>
+
+        <ContactGate />
       </main>
 
       <Footer />
     </div>
   );
 }
-

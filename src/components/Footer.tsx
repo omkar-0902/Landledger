@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export function Footer({ variant }: { variant?: "default" | "about" | "login" }) {
   if (variant === "about") {
     return (
-      <footer className="bg-[#121414] w-full border-t border-[#333535]/15 flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full mt-40 font-body text-sm tracking-wide">
+      <footer className="bg-[#121414] w-full border-t border-[#333535]/15 flex flex-col md:flex-row justify-between items-center px-12 py-16 mt-40 font-body text-sm tracking-wide">
         <div className="mb-8 md:mb-0">
           <div className="text-lg font-bold text-[#e2e2e2] mb-2">LandLedger</div>
           <p className="text-[#e2e2e2]/40 max-w-xs leading-relaxed">© 2024 Sovereign Intelligence. All rights reserved.</p>
@@ -32,7 +32,7 @@ export function Footer({ variant }: { variant?: "default" | "about" | "login" })
 
   if (variant === "login") {
     return (
-      <footer className="bg-[#121414] w-full border-t border-[#333535]/15 flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full">
+      <footer className="bg-[#121414] w-full border-t border-[#333535]/15 flex flex-col md:flex-row justify-between items-center px-12 py-16">
         <div className="mb-8 md:mb-0">
           <span className="text-lg font-black text-[#e2e2e2] font-headline tracking-tighter">LandLedger</span>
           <p className="text-[#e2e2e2]/40 text-xs mt-2 font-body uppercase tracking-widest">Sovereign Property Intelligence</p>
@@ -89,4 +89,3 @@ export function Footer({ variant }: { variant?: "default" | "about" | "login" })
     </footer>
   );
 }
-

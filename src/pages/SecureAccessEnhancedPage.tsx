@@ -5,6 +5,12 @@ import { useAuth } from "../state/auth";
 export function SecureAccessEnhancedPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const scanLines = [
+    { left: "15%", duration: "8s", opacity: 0.1 },
+    { left: "45%", duration: "15s", opacity: 0.05, delay: "-2s" },
+    { left: "75%", duration: "10s", opacity: 0.12, delay: "-5s" },
+    { left: "90%", duration: "18s", opacity: 0.08, delay: "-1s" },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden bg-surface-container-lowest text-on-surface selection:bg-primary/30">
@@ -19,12 +25,7 @@ export function SecureAccessEnhancedPage() {
       />
 
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {[
-          { left: "15%", duration: "8s", opacity: 0.1 },
-          { left: "45%", duration: "15s", opacity: 0.05, delay: "-2s" },
-          { left: "75%", duration: "10s", opacity: 0.12, delay: "-5s" },
-          { left: "90%", duration: "18s", opacity: 0.08, delay: "-1s" },
-        ].map((s, idx) => (
+        {scanLines.map((s, idx) => (
           <div
             key={idx}
             className="absolute top-0 h-[180px] w-px"
@@ -33,7 +34,7 @@ export function SecureAccessEnhancedPage() {
               background: "linear-gradient(to bottom, transparent, #7ad4e5, transparent)",
               opacity: s.opacity,
               animation: `landledger-stream ${s.duration} linear infinite`,
-              animationDelay: (s as any).delay ?? undefined,
+              animationDelay: s.delay,
             }}
           />
         ))}
@@ -244,4 +245,3 @@ export function SecureAccessEnhancedPage() {
     </div>
   );
 }
-

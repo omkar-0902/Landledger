@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AuthProvider } from "./state/auth";
 import { AboutUsPage } from "./pages/AboutUsPage";
 import { LandingGuestPage } from "./pages/LandingGuestPage";
@@ -10,10 +10,33 @@ import { PropertyDetailsSecondaryPage } from "./pages/PropertyDetailsSecondaryPa
 import { SecureAccessPage } from "./pages/SecureAccessPage";
 import { SecureAccessEnhancedPage } from "./pages/SecureAccessEnhancedPage";
 import { DesignsPage } from "./pages/DesignsPage";
+import { AdminLoginPage } from "./pages/AdminLoginPage";
+import { AdminDashboardPage } from "./pages/AdminDashboardPage";
+import { AdminDashboardRefinedPage } from "./pages/AdminDashboardRefinedPage";
+import { AdminAddPropertyPage } from "./pages/AdminAddPropertyPage";
+
+function HashScroll() {
+  const { hash, pathname } = useLocation();
+
+  React.useEffect(() => {
+    if (!hash) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    const id = window.decodeURIComponent(hash.slice(1));
+    window.requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, [hash, pathname]);
+
+  return null;
+}
 
 export default function App() {
   return (
     <AuthProvider>
+      <HashScroll />
       <Routes>
         <Route path="/" element={<Navigate to="/landing/guest" replace />} />
         <Route path="/landing/guest" element={<LandingGuestPage />} />
@@ -26,9 +49,12 @@ export default function App() {
         <Route path="/property/primary" element={<PropertyDetailsPrimaryPage />} />
         <Route path="/property/secondary" element={<PropertyDetailsSecondaryPage />} />
         <Route path="/designs" element={<DesignsPage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+        <Route path="/admin/dashboard-refined" element={<AdminDashboardRefinedPage />} />
+        <Route path="/admin/add-property" element={<AdminAddPropertyPage />} />
         <Route path="*" element={<Navigate to="/landing/guest" replace />} />
       </Routes>
     </AuthProvider>
   );
 }
-

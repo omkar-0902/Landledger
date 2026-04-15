@@ -4,12 +4,14 @@ import { Footer } from "../components/Footer";
 import { Modal } from "../components/Modal";
 import { LockedText } from "../components/Locked";
 import { TopNav } from "../components/TopNav";
+import { landImages, propertyDetails } from "../data/property";
 import { useAuth } from "../state/auth";
 
 export function LandingGuestPage() {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [loginPromptOpen, setLoginPromptOpen] = React.useState(false);
+  const { property } = propertyDetails;
 
   const locked = !isAuthenticated;
 
@@ -78,7 +80,7 @@ export function LandingGuestPage() {
             <div className="max-w-xl">
               <h2 className="text-4xl md:text-5xl font-headline font-bold mb-6">Available Listings</h2>
               <p className="text-on-surface-variant text-lg">
-                Public ledger entries for global verified real estate assets. Detailed ownership and encumbrance data requires authentication.
+                Public ledger entries for verified land assets. Property ID, owner name, and location require authentication.
               </p>
             </div>
             <div className="flex gap-4">
@@ -96,42 +98,42 @@ export function LandingGuestPage() {
               <div className="h-64 overflow-hidden relative">
                 <img
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  alt="Modern luxury villa exterior with minimalist architecture and reflecting pool at dusk"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2yB9Q-KaKLqlwjfEYwoXHt2qUqpNJwMFB7W-dE6d1kiJnPOi-8Nzg5095_VGUxuvxyDtl-3_O55j2f4TFG5SL4hKU79Wx1BOc8qR5Oz84_kaWAU9goIdOT7LrBhAAzCSYgdIClWjWQ2faVnF3ywR2jvefjKd4AK95PblyobgNwvA5mBeLxnuJk7wrJz0HVFVlcIGFlowAMAfJr5F815XdLtmsH9cnTotVwqDyU_gDZZOYl8Pq2yae-Cu6KrLQZC0ZiwxuEoGMNxM9"
+                  alt="Open land parcel with cultivated boundary lines and rural terrain"
+                  src={landImages.fieldParcel}
                 />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full bg-primary/20 backdrop-blur-md text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/20">
-                    Residential
+                    Land Parcel
                   </span>
                 </div>
               </div>
               <div className="p-8">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-headline font-bold mb-1">Aurelian Heights</h3>
+                  <h3 className="text-2xl font-headline font-bold mb-1">Verified Land Parcel</h3>
                   <div className="flex items-center gap-2 text-on-surface-variant">
                     <span className="material-symbols-outlined text-sm" aria-hidden="true">
                       location_on
                     </span>
-                    <span className="text-sm font-label uppercase tracking-wide">Beverly Hills, CA</span>
+                    <span className="text-sm font-label uppercase tracking-wide">Location protected</span>
                   </div>
                 </div>
                 <div className="space-y-4 mb-8 pt-6 border-t border-outline-variant/20">
                   <div className="flex justify-between items-center">
                     <span className="text-xs uppercase tracking-tighter text-outline font-bold">Property ID</span>
                     <LockedText locked={locked} className="text-sm font-mono">
-                      LL-HIDDEN-4829
+                      {property.propertyId}
                     </LockedText>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Current Owner</span>
+                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Owner Name</span>
                     <LockedText locked={locked} className="text-sm">
-                      John D. *********
+                      {property.ownerName}
                     </LockedText>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Encumbrance</span>
-                    <LockedText locked={locked}>
-                      <span className="text-xs px-2 py-0.5 rounded bg-error-container/20 text-error font-medium">ACTIVE LIEN</span>
+                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Location</span>
+                    <LockedText locked={locked} className="text-sm">
+                      {property.location}
                     </LockedText>
                   </div>
                 </div>
@@ -152,42 +154,42 @@ export function LandingGuestPage() {
               <div className="h-64 overflow-hidden relative">
                 <img
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  alt="Sleek commercial skyscraper with glass facade reflecting a bright blue morning sky"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2QV3rRuCWuj_dQ84SO6wTOmkrd6tB-CwED-qEmis-Nz_3GOD2HTdYeryQDbY6k2WLAMKlEmrqyA9dP94kIcUvpLCdhpP0x4HrKI6U5tTLHUO6q1me1PAa6mYt3Y6G_7J57UjaFfWBIsBuumJ8Po9kAUD0nHlda2VLPgfZX3nIwkg_b_a5CJAEm_eurY2sT9xCzK1HktmixOpsZ_HihgBmyAyuNYu7TE6m0kPkNGz_6cUIPTaTRV7-cMlMBNrH3ExidYFhQHExF4G1"
+                  alt="Green land parcel with terrain and visible field divisions"
+                  src={landImages.estateGrid}
                 />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full bg-tertiary/20 backdrop-blur-md text-tertiary text-[10px] font-bold uppercase tracking-widest border border-tertiary/20">
-                    Commercial
+                    Surveyed Plot
                   </span>
                 </div>
               </div>
               <div className="p-8">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-headline font-bold mb-1">Nexus Center</h3>
+                  <h3 className="text-2xl font-headline font-bold mb-1">Verified Land Parcel</h3>
                   <div className="flex items-center gap-2 text-on-surface-variant">
                     <span className="material-symbols-outlined text-sm" aria-hidden="true">
                       location_on
                     </span>
-                    <span className="text-sm font-label uppercase tracking-wide">Singapore, SG</span>
+                    <span className="text-sm font-label uppercase tracking-wide">Location protected</span>
                   </div>
                 </div>
                 <div className="space-y-4 mb-8 pt-6 border-t border-outline-variant/20">
                   <div className="flex justify-between items-center">
                     <span className="text-xs uppercase tracking-tighter text-outline font-bold">Property ID</span>
                     <LockedText locked={locked} className="text-sm font-mono">
-                      LL-SECURE-9102
+                      PROP002
                     </LockedText>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Current Owner</span>
+                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Owner Name</span>
                     <LockedText locked={locked} className="text-sm">
-                      Nexus Holdings Ltd.
+                      Kavitha M.
                     </LockedText>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Encumbrance</span>
-                    <LockedText locked={locked}>
-                      <span className="text-xs px-2 py-0.5 rounded bg-primary/20 text-primary font-medium">NONE</span>
+                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Location</span>
+                    <LockedText locked={locked} className="text-sm">
+                      Bangalore Rural
                     </LockedText>
                   </div>
                 </div>
@@ -209,7 +211,7 @@ export function LandingGuestPage() {
                 <img
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   alt="Vast green agricultural landscape with cultivated fields stretching to the horizon under soft sunlight"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb-fAjjR-dvIXLBdRXUgYr8SOXUnUCMFAgoVACKwgtpQUKLJIRUPVMMt4MnwpcL5qYGLjqKx5LMXan4Y0jqa-9IP7tPcVlv3kuPpoRXzdv8qpBCHAGHwgIG3ah9ls7PH_fqQbyLhcXsTqaXBtroJr_p5mdJX3B2JOxK9PVbGByqkZZTfTygnX2ddFdJbrfzIxtAg2kpZBwBluudVwvm25LUSG_dfjR8QAkmy0tVtCkVCuiOM8nFJQI9iFVIUvTH4zv85ARKDKQrqNL"
+                  src={landImages.fieldParcel}
                 />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-[10px] font-bold uppercase tracking-widest">
@@ -219,31 +221,31 @@ export function LandingGuestPage() {
               </div>
               <div className="p-8">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-headline font-bold mb-1">Valley Estate</h3>
+                  <h3 className="text-2xl font-headline font-bold mb-1">Verified Land Parcel</h3>
                   <div className="flex items-center gap-2 text-on-surface-variant">
                     <span className="material-symbols-outlined text-sm" aria-hidden="true">
                       location_on
                     </span>
-                    <span className="text-sm font-label uppercase tracking-wide">Tuscany, IT</span>
+                    <span className="text-sm font-label uppercase tracking-wide">Location protected</span>
                   </div>
                 </div>
                 <div className="space-y-4 mb-8 pt-6 border-t border-outline-variant/20">
                   <div className="flex justify-between items-center">
                     <span className="text-xs uppercase tracking-tighter text-outline font-bold">Property ID</span>
                     <LockedText locked={locked} className="text-sm font-mono">
-                      LL-LAND-1109
+                      PROP003
                     </LockedText>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Current Owner</span>
+                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Owner Name</span>
                     <LockedText locked={locked} className="text-sm">
-                      Family Trust Alpha
+                      Prakash Gowda
                     </LockedText>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Encumbrance</span>
-                    <LockedText locked={locked}>
-                      <span className="text-xs px-2 py-0.5 rounded bg-tertiary-container/20 text-tertiary font-medium">PENDING CLEARANCE</span>
+                    <span className="text-xs uppercase tracking-tighter text-outline font-bold">Location</span>
+                    <LockedText locked={locked} className="text-sm">
+                      Mandya, KA
                     </LockedText>
                   </div>
                 </div>
@@ -336,7 +338,7 @@ export function LandingGuestPage() {
       <section id="faqs" className="py-24 bg-surface-container-lowest border-y border-outline-variant/10 scroll-mt-32">
         <div className="max-w-4xl mx-auto px-8 text-center">
           <h3 className="text-3xl font-headline font-bold mb-4">Want to access full property details?</h3>
-          <p className="text-on-surface-variant mb-10 text-lg">Login to access Property IDs, Owner Names, and Encumbrance details.</p>
+          <p className="text-on-surface-variant mb-10 text-lg">Login to access Property IDs, Owner Names, and Locations.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button
               type="button"
@@ -360,7 +362,7 @@ export function LandingGuestPage() {
 
       <Modal open={loginPromptOpen} onClose={() => setLoginPromptOpen(false)} title="Login required">
         <p className="text-on-surface-variant leading-relaxed">
-          Login to access Property IDs, Owner Names, and Encumbrance details.
+          Login to access Property IDs, Owner Names, and Locations.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
           <button
@@ -382,4 +384,3 @@ export function LandingGuestPage() {
     </div>
   );
 }
-

@@ -18,56 +18,6 @@ export function TopNav({ mode }: { mode: NavMode }) {
     navigate("/login");
   }, [isAuthenticated, logout, navigate]);
 
-  if (mode === "about") {
-    return (
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] rounded-full bg-[#121414]/70 backdrop-blur-xl shadow-2xl shadow-black/20 flex justify-between items-center px-8 py-3 max-w-7xl mx-auto z-50">
-        <Link to="/landing/guest" className="text-2xl font-bold tracking-tighter text-primary font-headline">
-          LandLedger
-        </Link>
-        <div className="hidden md:flex items-center gap-8">
-          <a className="text-on-surface/60 hover:text-primary transition-colors duration-300 font-headline tracking-tight" href="#intelligence">
-            Intelligence
-          </a>
-          <a className="text-on-surface/60 hover:text-primary transition-colors duration-300 font-headline tracking-tight" href="#portfolio">
-            Portfolio
-          </a>
-          <a className="text-on-surface/60 hover:text-primary transition-colors duration-300 font-headline tracking-tight" href="#market">
-            Market
-          </a>
-          <a className="text-on-surface/60 hover:text-primary transition-colors duration-300 font-headline tracking-tight" href="#advisory">
-            Advisory
-          </a>
-        </div>
-        <div className="flex items-center gap-5">
-          <button
-            type="button"
-            className="material-symbols-outlined text-on-surface/60 hover:text-primary transition-transform active:scale-90"
-            aria-label="notifications"
-            onClick={() => navigate("/landing/logged-in")}
-          >
-            notifications
-          </button>
-          <button
-            type="button"
-            className="material-symbols-outlined text-on-surface/60 hover:text-primary transition-transform active:scale-90"
-            aria-label="settings"
-            onClick={() => navigate("/landing/logged-in")}
-          >
-            settings
-          </button>
-          <button
-            type="button"
-            onClick={onPrimaryAuthAction}
-            className="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30 grid place-items-center text-on-surface/70 hover:text-primary transition-colors"
-            aria-label={isAuthenticated ? "logout" : "login"}
-          >
-            <span className="material-symbols-outlined text-[18px]">{isAuthenticated ? "lock_open" : "lock"}</span>
-          </button>
-        </div>
-      </nav>
-    );
-  }
-
   const navItem = (to: string, label: string, active?: boolean) => (
     <NavLink
       to={to}
@@ -93,8 +43,6 @@ export function TopNav({ mode }: { mode: NavMode }) {
           <div className="hidden md:flex gap-8 items-center">
             {navItem("/landing/guest", "Home", mode === "guest")}
             {navItem("/about", "About")}
-            {navItem("/about#market", "How It Works")}
-            {navItem("/landing/guest#faqs", "FAQs", false)}
           </div>
         </div>
         <div className="flex items-center gap-6">
@@ -150,4 +98,3 @@ export function TopNav({ mode }: { mode: NavMode }) {
     </nav>
   );
 }
-
